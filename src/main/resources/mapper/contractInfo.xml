@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dflong.greenbull.mapper.ContractMapper">
+
+    <select id="getByUserId" resultType="com.dflong.greenbull.entity.ContractInfo">
+        SELECT contract_id as contractId, unionid, totoal_amount as totalAmount, state, create_time as createTime, update_time as updateTime
+        FROM contract_info where unionid = #{unionid}
+    </select>
+
+    <select id="list" resultType="com.dflong.greenbull.entity.ContractInfo">
+        SELECT contract_id as contractId, unionid, totoal_amount as totalAmount, state, create_time as createTime, update_time as updateTime
+        FROM contract_info
+    </select>
+
+</mapper>

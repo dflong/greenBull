@@ -2,7 +2,7 @@ package com.dflong.greenbull.entity;
 
 public class User {
 
-    String tableName;
+    String tableName = "user";
 
     String unionid;
 

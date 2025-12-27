@@ -8,7 +8,7 @@ public class _84 {
 
     public static void main(String[] args) {
         _84 v = new _84();
-        int i = v.largestRectangleArea(new int[]{2,4});
+        int i = v.largestRectangleArea(new int[]{5,6,7,4,3});
 
     }
 
@@ -21,6 +21,7 @@ public class _84 {
 
         Deque<Integer> stack = new LinkedList<>();
         for (int i = 0; i < n; i++) {
+            // 找右边比当前高度低的
             while (!stack.isEmpty() && heights[stack.peek()] > heights[i]) {
                 right[stack.pop()] = i;
             }
@@ -29,6 +30,7 @@ public class _84 {
 
         stack.clear();
         for (int i = n - 1; i >= 0; i--) {
+            // 找左边比当前高度低的
             while (!stack.isEmpty() && heights[stack.peek()] > heights[i]) {
                 left[stack.pop()] = i;
             }
