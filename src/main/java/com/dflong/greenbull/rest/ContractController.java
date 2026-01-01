@@ -26,7 +26,7 @@ public class ContractController implements ApplicationContextAware {
 
     ApplicationContext applicationContext;
 
-    // http://127.0.0.1:8080/contractInfo?unionId=55555
+    // http://127.0.0.1:8081/contractInfo?unionId=55555
     @RequestMapping("/contractInfo")
     @ResponseBody
     public ContractInfo contractInfo(@RequestParam String unionId) {

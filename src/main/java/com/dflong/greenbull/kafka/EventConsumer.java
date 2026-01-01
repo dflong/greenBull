@@ -28,13 +28,9 @@ public class EventConsumer {
         logger.info("receive records num: " + records.size());
         for (ConsumerRecord<String, String> record : records) {
             try {
-//                int state =  Integer.parseInt(record.value());
                 logger.info("kafka消费者监听消息： 订单号: " + record.key() + ", 订单信息: " + record.value());
-//                redisTemplate.opsForHash().put(KafkaConstant.TOPIC, record.key(), record.value());
-
             } catch (Exception e) {
-                e.printStackTrace();
-                // 如果失败，写入表重试或者发送到另一个retry topic
+                // 如果失败，写入数据库重试或者发送到另一个retry topic
             } finally {
                 // 手动ack, 通知kafka已经消费
                 ack.acknowledge();
@@ -42,27 +38,4 @@ public class EventConsumer {
         }
     }
 
-//    @KafkaListener(id = "greenBull-grouper-consumer1", topics = KafkaConstant.TOPIC, groupId = KafkaConstant.GROUP_ID)
-//    public void receive1(List<ConsumerRecord<String, String>> records,
-//                        Acknowledgment ack
-////                        @Header("kafka_receivedTopic") String topic,
-////                        @Header("kafka_receivedPartitionId") int partition,
-////                        @Header(KafkaHeaders.OFFSET) long offset
-//    ) {
-//        logger.info("receive records num: " + records.size());
-//        for (ConsumerRecord<String, String> record : records) {
-//            try {
-////                int state =  Integer.parseInt(record.value());
-//                logger.info("kafka消费者监听消息： 订单号: " + record.key() + ", 订单信息: " + record.value());
-////                redisTemplate.opsForHash().put(KafkaConstant.TOPIC, record.key(), record.value());
-//
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//                // 如果失败，写入表重试或者发送到另一个retry topic
-//            } finally {
-//                // 手动ack, 通知kafka已经消费
-//                ack.acknowledge();
-//            }
-//        }
-//    }
 }
