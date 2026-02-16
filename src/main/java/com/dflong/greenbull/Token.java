@@ -1,16 +1,38 @@
 package com.dflong.greenbull;
 
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.Semaphore;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 /**
  * 限流
  */
 public class Token {
 
+    public static int getInt() {
+        return 2889;
+    }
+
+    public static String getStr() {
+        return "token的String返回值";
+    }
+
+    public static void getNull() {
+        System.out.println("没有返回值");
+    }
+
     public static void main(String[] args) throws InterruptedException {
+
+        CompletableFuture<String> result = CompletableFuture
+                .supplyAsync(() -> getInt())
+                .thenCombine(
+                        CompletableFuture.supplyAsync(() -> getStr()),
+                        (dbResult, apiResult) -> dbResult + "|" + apiResult
+                )
+                .thenApply(combined -> combined + "|processed")
+                .exceptionally(ex -> "错误恢复: " + ex.getMessage());
+
+        result.thenAccept(finalResult -> System.out.println(finalResult));
+
+
         //令牌桶，信号量实现，容量为3
         final Semaphore semaphore = new Semaphore(3);
 
@@ -24,18 +46,18 @@ public class Token {
                 }
 //                System.out.println("令牌数："+semaphore.availablePermits());
             }
-        },1000,1000, TimeUnit.MILLISECONDS);
+        },100000,100000, TimeUnit.MILLISECONDS);
 
 
         //等待，等候令牌桶储存
         Thread.sleep(5);
         //模拟洪峰5个请求，前3个迅速响应，后两个排队
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 50; i++) {
             semaphore.acquire();
             System.out.println("洪峰："+i);
         }
         //模拟日常请求，2s一个
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 30; i++) {
             Thread.sleep(1000);
             semaphore.acquire();
             System.out.println("日常："+i);
