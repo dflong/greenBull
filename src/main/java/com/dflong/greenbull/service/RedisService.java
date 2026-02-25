@@ -111,7 +111,7 @@ public class RedisService {
         RLock lock = redissonClient.getLock("myLock" + unionId);
         try {
             // 尝试获取锁，leaseTime = -1 才有看门狗
-            boolean isLocked = lock.tryLock(0, -1, TimeUnit.SECONDS);
+            boolean isLocked = lock.tryLock(0, - 1, TimeUnit.SECONDS);
             if (isLocked) {
                 try {
                     // 业务逻辑

@@ -1,18 +1,19 @@
-package com.dflong.algorithm.leetcode0;
+package com.dflong.algorithm.lcr;
 
-public class _10 {
+public class lcr137 {
 
-    public boolean isMatch(String s, String p) {
+    public boolean articleMatch(String s, String p) {
         int m = s.length(), n = p.length();
-        boolean [][] dp = new boolean[m + 1][n + 1];
-        // 初始化
-        dp[0][0] = true;
-        for(int j = 2; j < n + 1; j += 2) {
-            dp[0][j] = dp[0][j - 2] && p.charAt(j - 1) == '*'; // 重复前一个位置0次，相当于抹去
+
+        boolean[][] dp = new boolean[m + 1][n + 1]; // m,n位置是否匹配
+        dp[0][0] = true; // 空字符串匹配
+
+        for (int j = 2; j <= n; j += 2) {
+            dp[0][j] = dp[0][j - 2] && p.charAt(j - 1) == '*'; // 前一个字符串匹配0次
         }
 
-        for (int i = 1; i <= m; i++) {
-            for (int j = 1; j <= n; j++) {
+        for (int i = 1; i <= m; i ++) {
+            for (int j = 1; j <= n; j ++) {
                 if (p.charAt(j - 1) == '.') {
                     dp[i][j] = dp[i - 1][j - 1];
                 } else if (p.charAt(j - 1) == '*') {
@@ -28,7 +29,7 @@ public class _10 {
                 }
             }
         }
+
         return dp[m][n];
     }
-
 }

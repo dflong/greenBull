@@ -24,12 +24,9 @@ public class _3 {
             if (map.containsKey(c)) {
                 max = Math.max(max, end - begin + 1);
                 begin = Math.max(map.get(c) + 1, begin);
-                end = i;
-                map.put(c, i);
-            } else {
-                end = i;
-                map.put(c, i);
             }
+            end = i;
+            map.put(c, i);
         }
 
         return Math.max(max, end - begin + 1);
@@ -57,6 +54,7 @@ public class _3 {
             max = Math.max(max, i - begin + 1);
             nums[idx] = i;
         }
+        max = Math.max(max, s.length() - begin);
         return max;
     }
 }
