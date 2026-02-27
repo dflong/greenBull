@@ -1,10 +1,6 @@
-package com.dflong.algorithm.leetcode0;
+package com.dflong.algorithm.lcr;
 
-public class _8 {
-
-    public static void main(String[] args) {
-        new _8().myAtoi("4193 with words");
-    }
+public class lcr192 {
 
     int negative = 0; // 负号的数量
     boolean hasNum = false; // 已经有整数
@@ -25,13 +21,14 @@ public class _8 {
                 if (negative > 0) break;
                 if (hasPlus) break;
                 hasPlus = true;
-            }
-            else if (c >= '0' && c <= '9') {
+            } else if (c >= '0' && c <= '9') {
                 sb.append(c);
                 hasNum = true;
-            } else if (c == ' ') {
-                if (hasPlus) break;
-                if (hasNum) break;
+            } else if (c == ' ') {// -   234 ->  0
+                // 遇见空格结束
+                break;
+//                if (hasPlus) break;
+//                if (hasNum) break;
             } else {
                 break;
             }
