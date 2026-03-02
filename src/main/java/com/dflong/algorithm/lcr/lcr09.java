@@ -1,5 +1,11 @@
 package com.dflong.algorithm.lcr;
 
+import com.dflong.greenbull.entity.ContractInfo;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+
 public class lcr09 {
 
     public int sumNumbers(TreeNode root) {
@@ -21,6 +27,19 @@ public class lcr09 {
 
         if (root.right != null) {
             dfs(root.right, sum * 10 + root.right.val);
+        }
+    }
+
+    public static void main(String[] args) {
+       List<ContractInfo> contracts = new ArrayList<>();
+        while (true) {
+            System.out.println("    ddddddddddddddddddddddddddd");
+            ContractInfo c = new ContractInfo();
+            c.setState(1);
+            c.setContractId("123456");
+            c.setUnionid("gfssder");
+            c.setTotalAmount(BigDecimal.ONE);
+            contracts.add(c);
         }
     }
 

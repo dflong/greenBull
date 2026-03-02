@@ -20,7 +20,7 @@ public class _430 {
             } else {
                 Node next = head.next; // 记录下一个节点
                 Node child = head.child; // 子节点开始节点
-                Node childLast = dfs(head.child);
+                Node childLast = dfs(head.child); // 子节点最后一个节点
 
                 // 合并
                 head.next = child;

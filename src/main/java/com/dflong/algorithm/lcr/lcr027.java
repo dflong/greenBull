@@ -1,14 +1,13 @@
-package com.dflong.algorithm.leetcode0;
+package com.dflong.algorithm.lcr;
 
-public class _234 {
+public class lcr027 {
 
     public boolean isPalindrome(ListNode head) {
         if (head == null || head.next == null) {
             return true;
         }
 
-        ListNode slow = head;
-        ListNode fast = head;
+        ListNode slow = head, fast = head;
         while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
@@ -27,18 +26,13 @@ public class _234 {
     }
 
     public ListNode reverseList(ListNode head) {
-        if (head == null || head.next == null) return head;
-
-        ListNode pre = null;
-        ListNode cur = head;
-
+        ListNode pre = null, cur = head;
         while (cur != null) {
-            ListNode temp = cur.next;
+            ListNode next = cur.next;
             cur.next = pre;
             pre = cur;
-            cur = temp;
+            cur = next;
         }
-
         return pre;
     }
 }
