@@ -1,6 +1,6 @@
 package com.dflong.algorithm.lcr;
 
-public class lvr144 {
+public class lcr144 {
 
     public TreeNode flipTree(TreeNode root) {
         if (root == null) return null;

@@ -1,6 +1,6 @@
 package com.dflong.algorithm.lcr;
 
-public class lcr88 {
+public class lcr088 {
 
     public int minCostClimbingStairs(int[] cost) {
         // dp[i] i台阶的最小花费 从前一个位置或前俩个位置跳过来

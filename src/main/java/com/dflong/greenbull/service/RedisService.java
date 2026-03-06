@@ -42,7 +42,7 @@ public class RedisService {
 
 
 
-//        ValueOperations stringOps = redisTemplate.opsForValue();
+        ValueOperations stringOps = redisTemplate.opsForValue();
 //        stringOps.set(unionId, JSON.toJSONString(contractInfo));
 //
 //        HashMap<String, Object> maps = new HashMap<>();
