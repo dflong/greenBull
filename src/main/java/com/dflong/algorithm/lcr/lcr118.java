@@ -54,7 +54,4 @@ class UnionSet {
         return a == b;
     }
 
-    public int[] getParent() {
-        return parent;
-    }
 }
