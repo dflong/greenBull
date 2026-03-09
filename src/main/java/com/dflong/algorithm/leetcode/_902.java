@@ -4,38 +4,46 @@ import java.util.*;
 
 public class _902 {
 
-    public static void main(String[] args) {
-        new _902().atMostNGivenDigitSet(new String[]{"1","3","5","7"}, 100);
-    }
+    private String[] digits;
+    private char s[];
+    private int dp[];
 
-    private char[] s;
-    private int[] emeo;
-    private int[] dd;
-
+    // 从digits选数字，得到结果<=n的个数
     public int atMostNGivenDigitSet(String[] digits, int n) {
+        this.digits = digits;
         s = Integer.toString(n).toCharArray();
-        dd = new int[digits.length];
-        for (int i = 0; i < digits.length; i++) dd[i] = Integer.parseInt(digits[i]);
-        int m = s.length;
-        emeo = new int[m];
-        Arrays.fill(emeo, -1);
-        return f(0, true, false);
+        dp = new int[s.length];
+        Arrays.fill(dp, -1); // dp[i] = -1 表示 i 这个状态还没被计算出来
+        return dfs(0, true, false);
     }
 
-    // isNum 是否选择了当前位， 为了去除前导0
-    // https://leetcode.cn/problems/numbers-at-most-n-given-digit-set/solutions/1900038/by-lfool-epqy/?envType=problem-list-v2&envId=bec5g5r
-    private int f(int i, boolean isLimit, boolean isNum) {
-        if (i == s.length) return isNum ? 1 : 0;
-        if (!isLimit && isNum && emeo[i] != -1) return emeo[i];
-        int up = isLimit ? s[i] - '0' : 9;
-        int res = isNum ? 0 : f(i + 1, false, false);
-        for (int d : dd) {
-            if (d <= up) {
-                res += f(i + 1, isLimit && d == up, true);
-            }
+
+    // idx当前位 isLimit前一位是否受到上界限制 isNum前一位是否选择
+    int dfs(int idx, boolean preIsLimit, boolean preIsNum) {
+        if (idx == s.length) return preIsNum ? 1 : 0; // 到底了而且前一位选了是一种方案
+
+        if (!preIsLimit && preIsNum && dp[idx] != -1) return dp[idx]; // 初始相反条件
+
+        int res = 0;
+
+        if (!preIsNum) {
+            // 前一位不选择，当前位置也可以不选择
+            res += dfs(idx + 1, false, false);
         }
-        if (!isLimit && isNum) emeo[i] = res;
+
+        char up = preIsLimit ? s[idx] : '9';
+        for (String digit : digits) {
+            // 超过上界
+            if (digit.charAt(0) > up) continue;
+
+            // idx - 2, idx - 1都受到上界限制
+            res += dfs(idx + 1, preIsLimit && up == digit.charAt(0), true);
+        }
+
+        if (!preIsLimit && preIsNum) {
+            dp[idx] = res;
+        }
+
         return res;
     }
-
 }

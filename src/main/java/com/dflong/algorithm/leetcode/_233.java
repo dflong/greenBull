@@ -5,36 +5,37 @@ import java.util.List;
 
 public class _233 {
 
-    public static void main(String[] args) {
-        new _233().countDigitOne(13);
-    }
-
     // https://leetcode.cn/problems/numbers-at-most-n-given-digit-set/solutions/1900038/by-lfool-epqy/?envType=problem-list-v2&envId=bec5g5r
     public int countDigitOne(int n) {
-
-        char[] s = Integer.toString(n).toCharArray();
-        // 处于第 0 位的时候，选择是被限制的，只能选择不超过第 0 位的值
-        traversal(s, 0, 0, true);
-        return 9;
+       s = Integer.toString(n).toCharArray();
+       cache = new int[s.length][s.length];
+       return dfs(0, 0, true); // preIsLimit前一位是否受到上界限制
     }
-    private List<Integer> list = new ArrayList<>();
-    private void traversal(char[] s, int idx, int path, boolean isLimit) {
-        // 结束条件
-        if (idx == s.length) {
-            list.add(path);
-            return ;
+
+    char[] s;
+    int[][] cache;
+    // 这里只缓存了idx、oneCnt，没有isLimit,因为只有每次都选择上界的时候才会isLimit = true，也就是快dfs结束的时候
+
+    // idx当前位 preIsLimit前一位是否受到上界限制
+    public int dfs(int idx, int oneCnt, boolean preIsLimit) {
+        if (idx == s.length) return oneCnt;
+
+        if (!preIsLimit && cache[idx][oneCnt] > 0) {
+            return cache[idx][oneCnt];
         }
-        // 确定选择的上界
-        // 如果 isLimit 为 true，那么可选择的上界不能超过该位的值；否则可以一直选择到 9
-        int up = isLimit ? s[idx] - '0' : 9;
-        for (int d = 0; d <= up; d++) {
-            // 递归遍历下一位
-            // 下一位的 isLimit 确定方法：当前位被限制了，而且选择的值是上界
-            // 继续按照上图，举个例子：当处于第 0 位时，isLimit 为 true，
-            // 如果此时选择上界 1，那么遍历第 1 位的时候也是被限制的；
-            // 但是如果此时选择的不是上界 1，那么遍历第 1 位的时候就没有被限制
-            traversal(s, idx + 1, path * 10 + d, isLimit && d == up);
+
+        int res = 0;
+        int up = preIsLimit ? s[idx] - '0' : 9; // 是否被限制 这里的isLimit是上一位，算出up得到本次的上界
+
+        for (int d = 0; d <= up; d ++) { // s = 123, s[0] = 1且当前选择了2则下一位是受到限制的
+            res += dfs(idx + 1, oneCnt + (d == 1 ? 1 : 0), preIsLimit && d == up); // 得到下次的上界
         }
+
+        if (!preIsLimit) {
+            cache[idx][oneCnt] = res;
+        }
+
+        return res;
     }
 
 }
