@@ -1,9 +1,13 @@
 package com.dflong.algorithm.lcr;
 
 import java.util.HashMap;
-import java.util.Objects;
 
 public class lcr005 {
+
+public static void main(String[] args) {
+    int maxProduct = new lcr005().maxProduct(new String[] {"abc", "de", "xyz"});
+    System.out.println("maxProduct = " + maxProduct );
+}
 
     public int maxProduct(String[] words) {
         HashMap<Integer, Integer> map = new HashMap<>();
