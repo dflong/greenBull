@@ -10,6 +10,7 @@ public class _148 {
         new _148().sortList(listNode);
     }
 
+    // 链表归并排序
     public ListNode sortList(ListNode head) {
         return sortList2(head, null);
     }
@@ -19,7 +20,7 @@ public class _148 {
             return head;
         }
         if (head.next == tail) {
-            head.next = null;
+            head.next = null; // 这里断开是为了后面的合并
             return head;
         }
 

@@ -7,7 +7,6 @@ public class _25 {
         hair.next = head;
         ListNode prev = hair;
 
-
         while (head != null) {
             ListNode tail = prev;
 
@@ -35,16 +34,17 @@ public class _25 {
         return hair.next;
     }
 
+    // 1 -> 2 -> 3
     ListNode[] reverse(ListNode head, ListNode tail) {
-        ListNode pre = tail.next;
-        ListNode cur = head;
-        while (cur != pre) {
+        ListNode pre = head, cur = head;
+        while (tail != pre) {
             ListNode next = cur.next;
             cur.next = pre;
+
             pre = cur;
             cur = next;
         }
 
-        return new ListNode[] {tail, head};
+        return new ListNode[]{tail, head};
     }
 }

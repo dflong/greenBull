@@ -21,30 +21,4 @@ public class _80 {
         return i;
     }
 
-//    public static int removeDuplicates(int[] nums) {
-//        if (nums == null || nums.length <= 2) {
-//            return nums.length;
-//        }
-//        int index = nums[0];
-//        int size = 1;
-//        int x = 0;
-//        for (int i = 1; i < nums.length - x;i ++) {
-//            if (nums[i] == index) {
-//                size ++;
-//                if (size > 2) {
-//                    for (int j = i; j < nums.length - 1 - x; j ++) {
-//                        int temp = nums[j];
-//                        nums[j] = nums[j + 1];
-//                        nums[j + 1] = temp;
-//                    }
-//                    i --;
-//                    x ++;
-//                }
-//            } else {
-//                index = nums[i];
-//                size = 1;
-//            }
-//        }
-//        return nums.length - x;
-//    }
 }
