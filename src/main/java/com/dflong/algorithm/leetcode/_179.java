@@ -16,6 +16,7 @@ public class _179 {
             return - s1.compareTo(s2);
         });
 
+        // 0,0,0]这样的情况输出是"000"，去除前导0后可以得到正确答案"0"
         int i = 0;
         while (i < strs.length - 1 && strs[i].equals("0")) {
             i ++;

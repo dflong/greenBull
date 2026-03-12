@@ -7,7 +7,7 @@ public class _560 {
 
     public static void main(String[] args) {
         _560 v = new _560();
-        int i = v.subarraySum(new int[]{-1, -1, 1}, 0);
+        int i = v.subarraySum(new int[]{1,2,3}, 5);
     }
 
     public int subarraySum(int[] nums, int k) {

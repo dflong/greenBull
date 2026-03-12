@@ -9,21 +9,21 @@ public class _69 {
     }
 
     public int mySqrt(int x) {
-        if (x == 1) return x;
-        if (x < 4) {
-            return x / 2;
+        if (x == 0) {
+            return 0;
         }
-        int y = x / 2;
-        while (Math.pow(y, 2) > x) {
-            y = y / 2;
+        // 牛顿迭代法
+        s = x;
+        return (int) sqrt(x);
+    }
+    int s;
+
+    double sqrt(double x) {
+        double res = (x + s / x) / 2;
+        if (res == x) {
+            return x;
+        } else {
+            return sqrt(res);
         }
-        y ++;
-        while (Math.pow(y, 2) < x) {
-            y ++;
-        }
-        if (Math.pow(y, 2) == x) {
-            return y;
-        }
-        return y - 1;
     }
 }

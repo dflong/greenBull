@@ -49,7 +49,7 @@ public class RangeUpdatePointQueryBIT {
     // ====================== 核心私有方法 ======================
 
     /**
-     * n & (n - 1) 等于把n的最低位1变成0
+     * x & (x - 1) 等于把n的最低位1变成0
      * x & (-x) 获取最低位的1
      */
     private int lowbit(int x) {

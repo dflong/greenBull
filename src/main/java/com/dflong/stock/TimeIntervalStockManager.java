@@ -16,6 +16,26 @@ import java.util.TreeMap;
  */
 public class TimeIntervalStockManager {
 
+    public static void main(String[] args) {
+        TreeMap<Integer, String> treeMap = new TreeMap<>();
+        treeMap.put(1, "1");
+        treeMap.put(2, "2");
+        treeMap.put(4, "4");
+        treeMap.put(5, "5");
+        treeMap.put(7, "7");
+        treeMap.put(8, "8");
+        treeMap.put(9, "9");
+        treeMap.put(11, "11");
+        treeMap.put(12, "12");
+        treeMap.put(15, "15");
+        treeMap.put(16, "16");
+        treeMap.put(18, "18");
+        treeMap.put(19, "19");
+
+        NavigableMap<Integer, String> integerStringNavigableMap = treeMap.subMap(10, true, 15, false);
+        System.out.println();
+    }
+
     /**
      * key: 区间起始时间
      * value: 从该时间点开始直到下一个 key（或无穷大）之间的库存数量

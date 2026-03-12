@@ -4,21 +4,22 @@ public class lcr155 {
 
     Node head, pre;
     public Node treeToDoublyList(Node root) {
-        if(root==null) return null;
+        if(root == null) return null;
         dfs(root);
         head.left = pre;
         pre.right = head;
         return head;
     }
     public void dfs(Node root){
-        if(root==null) return;
+        if(root == null) return;
         dfs(root.left);
-        if(pre==null){
+        if (pre == null) {
             head = root;
-            pre = head;
-        }else{
+            pre = root; // 当前遍历到头节点
+        } else {
             pre.right = root;
             root.left = pre;
+
             pre = root;
         }
         dfs(root.right);
