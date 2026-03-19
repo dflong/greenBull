@@ -3,12 +3,14 @@ package com.dflong.algorithm.leetcode;
 public class _81 {
 
     public boolean search(int[] nums, int target) {
-        // 二分查找 2,5,6,0,0,1,2
+        // 二分查找 2,5,6,0,0,1,2，存在重复元素
         int l = 0, r = nums.length - 1;
         while (l <= r) {
             int mid = l + (r - l) / 2;
             if (nums[mid] == target) {
                 return true;
+            } else if (nums[mid] == nums[r]) {
+                r --;
             } else if (nums[mid] < nums[r]) {
                 // 右边有序
                 if (nums[mid] < target && target <= nums[r]) {
@@ -16,14 +18,12 @@ public class _81 {
                 } else {
                     r = mid - 1;
                 }
-            } else if (nums[mid] > nums[r]) {
+            } else {
                 if (nums[l] <= target && target < nums[mid]) {
                     r = mid - 1;
                 } else {
                     l = mid + 1;
                 }
-            } else {
-                r --;
             }
         }
         return false;

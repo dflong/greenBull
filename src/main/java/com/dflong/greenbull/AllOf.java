@@ -5,6 +5,9 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * https://jishuzhan.net/article/1968601760677281793 CompletableFuture 方法详解
+ */
 public class AllOf {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
