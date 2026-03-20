@@ -6,24 +6,36 @@ import java.util.List;
 public class _143 {
 
     public void reorderList(ListNode head) {
-        List<ListNode> list = new ArrayList<>();
-        while (head != null) {
-            list.add(head);
-            head = head.next;
+        // 快慢指针找到中点
+        ListNode slow = head;
+        ListNode fast = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
         }
 
-        ListNode hair = new ListNode(-1), cur = hair;
-        int  i = 0, j = list.size() - 1;
-        while (i < j) {
-            cur.next = list.get(i ++);
-            cur.next.next = list.get(j --);
-            cur = cur.next.next;
+        ListNode cur = slow.next, l1 = head;
+        slow.next = null; // 断开l1、l2
+
+        ListNode l2 = null;
+        while (cur != null) {
+            ListNode next = cur.next;
+            cur.next = l2;
+            l2 = cur;
+            cur = next;
         }
-        if (i == j) { // 奇数
-            cur.next = list.get(i);
-            cur = cur.next;
+
+        ListNode l1_tmp;
+        ListNode l2_tmp;
+        while (l1 != null && l2 != null) {
+            l1_tmp = l1.next;
+            l2_tmp = l2.next;
+
+            l1.next = l2;
+            l1 = l1_tmp;
+
+            l2.next = l1;
+            l2 = l2_tmp;
         }
-        cur.next = null;
-        head = hair.next;
     }
 }
