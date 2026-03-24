@@ -12,7 +12,7 @@ public class _41 {
 
         for (int i = 0; i < nums.length; i++) {
             if (nums[i] <= 0) { // 处理负数
-                nums[i] = len + 1;
+                nums[i] = len + 1; // 最大缺失的值
             }
         }
 

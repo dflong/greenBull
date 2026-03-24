@@ -3,7 +3,7 @@ package com.dflong.algorithm.leetcode0;
 public class _80 {
 
     public static void main(String[] args) {
-        int[] nums = {0,0,1,1,1,1,2,3,3};
+        int[] nums = {0,0,1,1,1,2,2,3,3};
         int i = removeDuplicates(nums);
         System.out.println(i);
     }

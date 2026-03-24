@@ -12,6 +12,8 @@ public class _662 {
 
         int max = 0;
         while (!list.isEmpty()) {
+            max = Math.max(max, list.get(list.size() - 1).index - list.get(0).index + 1);
+
             List<Pair2> temp = new ArrayList<>();
             for (Pair2 pair : list) {
                 if (pair.root.left != null) {
@@ -21,7 +23,6 @@ public class _662 {
                     temp.add(new Pair2(pair.index * 2 + 1, pair.root.right));
                 }
             }
-            max = Math.max(max, list.get(list.size() - 1).index - list.get(0).index + 1);
             list = temp;
         }
         return max;

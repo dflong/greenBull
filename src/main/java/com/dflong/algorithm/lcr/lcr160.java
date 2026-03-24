@@ -1,7 +1,5 @@
 package com.dflong.algorithm.lcr;
 
-import com.dflong.algorithm.leetcode0.MedianFinder;
-
 import java.util.PriorityQueue;
 
 public class lcr160 {
@@ -15,8 +13,8 @@ public class lcr160 {
             return (minPq.peek() + maxPq.peek()) / 2.0;
         }
 
-        PriorityQueue<Integer> minPq;
-        PriorityQueue<Integer> maxPq;
+        PriorityQueue<Integer> minPq; // 保存较大的一方，堆顶为最小元素
+        PriorityQueue<Integer> maxPq; // 保存较小的一方，堆顶为最大元素
 
         public MedianFinder() {
             minPq = new PriorityQueue<Integer>();
