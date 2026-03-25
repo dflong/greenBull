@@ -141,7 +141,7 @@ public class SkipList <K extends Comparable<K>, V> {
                 p = p.forwards[i];
             }
             // p.forwards[i]是大于的第一个节点，则p是待删除节点的前驱节点
-            update[i] = p;
+            update[i] = p; // 最差是head节点
         }
 
         p = p.forwards[0];
