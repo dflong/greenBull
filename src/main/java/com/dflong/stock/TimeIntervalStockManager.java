@@ -12,7 +12,6 @@ import java.util.TreeMap;
  * 时间区间车辆库存管理：
  * 时间区间为 [startTime, endTime)，startTime 为闭区间端点，endTime 为开区间端点。
  *
- * 不使用线段树，仅使用 TreeMap 维护一段段连续区间上的库存值（分段常量函数）。
  */
 public class TimeIntervalStockManager {
 

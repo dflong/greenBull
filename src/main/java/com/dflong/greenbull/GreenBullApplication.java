@@ -14,7 +14,6 @@ import org.springframework.core.env.Environment;
 public class GreenBullApplication {
 
     public static void main(String[] args) {
-        System.out.println("vehicle_contract_groups2".hashCode() % 50);
         SpringApplication.run(GreenBullApplication.class, args);
     }
 

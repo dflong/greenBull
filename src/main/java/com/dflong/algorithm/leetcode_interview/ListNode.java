@@ -1,4 +1,4 @@
-package com.dflong.algorithm.leetcode;
+package com.dflong.algorithm.leetcode_interview;
 
 public class ListNode {
 

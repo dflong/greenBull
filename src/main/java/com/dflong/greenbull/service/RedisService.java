@@ -21,7 +21,7 @@ import java.util.concurrent.TimeUnit;
 public class RedisService {
 
     @Autowired
-    RedisTemplate redisTemplate;
+    RedisTemplate<String, String> redisTemplate;
 
     @Autowired
     ContractService contractService;
@@ -79,20 +79,17 @@ public class RedisService {
     }
 
     // 扣库存
-    public void runLua() {
-//        redisTemplate.opsForValue().set("vehicle_model_stocking_count", "20");
+    public long runLua(String redisKey, Object... args) {
         Object result = null;
         try {
-            //调用lua脚本并执行（原子性操作）
             DefaultRedisScript<Long> redisScript = new DefaultRedisScript<>();
             redisScript.setResultType(Long.class);//返回类型是Long
-            //lua文件存放在resources目录下的redis文件夹内
             redisScript.setScriptSource(new ResourceScriptSource(new ClassPathResource("redis/redis_stock.lua")));
-            result = redisTemplate.execute(redisScript, Arrays.asList("vehicle_model_stocking_count"), "15");
-            System.out.println("lock == " + result);
+            result = redisTemplate.execute(redisScript, Collections.singletonList(redisKey), args);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return result == null ? - 1 : (long) result;
     }
 
     public void runPipelined() {
